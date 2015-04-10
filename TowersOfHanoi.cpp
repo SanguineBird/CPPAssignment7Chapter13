@@ -31,13 +31,14 @@ namespace TowersMMoore{
   
   void TowersOfHanoi::moveDiscs(){
     //Step 1-------------------
+    cout << "step 1\n"; //!!!!!!!!!!!!!!!!!!
     for(int i = maxIndex; i >= 0; i--){
-      if(discs[i - 1] == 'C'){
+      if(discs[i - 1] == 'C'){ //not A or B
         discs[i] = 'B';
         display(i);
         moves++;
       }
-      else if(discs[i - 1] == 'B'){
+      else if(discs[i - 1] == 'B'){ //not A or C
         discs[i] = 'C';
         display(i);
         moves++;
@@ -47,7 +48,8 @@ namespace TowersMMoore{
     } //end for
     
     //Step 2-------------------
-    if((discs[maxIndex - 1] == 'B')){
+    cout << "step 2\n"; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if((discs[maxIndex - 1] == 'B')){ //not A or C
       discs[maxIndex] = 'C';
       display(maxIndex);
       moves++;
@@ -56,13 +58,14 @@ namespace TowersMMoore{
       moveDiscs();
       
     //Step 3-------------------
+    cout << "step 3\n";
     for(int n = maxIndex; n >= 0; n--){
-      if(discs[n - 1] == 'A'){
+      if(discs[n - 1] == 'A'){ //not B or C
         discs[n] = 'C';
         display(n);
         moves++;
       }
-      else if(discs[n - 1] == 'C'){
+      else if(discs[n - 1] == 'C'){ //not B or A
         discs[n] = 'A';
         display(n);
         moves++;
@@ -76,6 +79,22 @@ namespace TowersMMoore{
   void TowersOfHanoi::display(int index){
     cout << "Disc " << (index + 1) << " moved to tower " << discs[index] << endl;
   } //end display
+  
+  bool TowersOfHanoi::allDiscs(char tower){
+    bool rValue;
+    
+    for(int i = maxIndex; i >= 0; i--){
+      if (discs[i] != tower){
+        rValue = false;
+        break;
+      }
+      else
+        rValue = true;
+    }
+    
+    cout << rValue << endl;
+    return rValue;
+  } //end allDiscs
   
   TowersOfHanoi::~TowersOfHanoi()
   {delete [] discs;}
