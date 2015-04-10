@@ -28,51 +28,17 @@ namespace TowersMMoore{
       discs[i] = 'A';
     }
   }
-  
-  void TowersOfHanoi::moveDiscs(){
-    //Step 1-------------------
-    cout << "step 1\n"; //!!!!!!!!!!!!!!!!!!
-    for(int i = maxIndex; i >= 0; i--){
-      if(discs[i - 1] == 'C'){ //not A or B
-        discs[i] = 'B';
-        display(i);
-        moves++;
-      }
-      else if(discs[i - 1] == 'B'){ //not A or C
-        discs[i] = 'C';
-        display(i);
-        moves++;
-      }
-      else
-        moveDiscs();
-    } //end for
-    
-    //Step 2-------------------
-    cout << "step 2\n"; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if((discs[maxIndex - 1] == 'B')){ //not A or C
-      discs[maxIndex] = 'C';
-      display(maxIndex);
-      moves++;
-    }
-    else
-      moveDiscs();
-      
-    //Step 3-------------------
-    cout << "step 3\n";
-    for(int n = maxIndex; n >= 0; n--){
-      if(discs[n - 1] == 'A'){ //not B or C
-        discs[n] = 'C';
-        display(n);
-        moves++;
-      }
-      else if(discs[n - 1] == 'C'){ //not B or A
-        discs[n] = 'A';
-        display(n);
-        moves++;
-      }
-      else
-        moveDiscs();
-    } //end for
+
+//Based on research
+//Source: http://www.cs.cmu.edu/~cburch/survey/recurse/hanoiimpl.html
+  void TowersOfHanoi::moveDiscs(int disc, char source, char dest, char spare){
+    if (disc == 0)
+      discs[disc] = dest;
+    else{
+      moveDisc(disc - 1, source, spare, dest);
+      discs[disc] = dest;
+      moveDisc(disc - 1, spare, dest, source);
+    } // end else
   } //end moveDiscs
 
   //uses cout
