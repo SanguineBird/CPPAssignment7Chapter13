@@ -1,56 +1,37 @@
 /*
-This is the implementation file for the class TowersOfHanoi.
+Meghan Moore
+March 28, 2015
+CIT 245 - Data Structures and Programming C++
+Assignment 7 - Chapter 13
+Purpose: Implement the Towers of Hanoi using recursion.
 */
 
-#include <iostream> //cout
+#include <iostream> //cin, cout, cerr, endl
+#include <cstdlib> //system
 using namespace std;
 #include "TowersOfHanoi.h"
+#include "RepeatPrompt.h"
+using namespace RepeatMMoore;
 
-namespace TowersMMoore{
-  //default constructor:
-  TowersOfHanoi::TowersOfHanoi(){
-    discs = new char[3];
-    maxIndex = 2;
-    moves = 0;
-    
-    for(int i = 0; i <= maxIndex; i++){
-      discs[i] = 'A';
-    }
-  }
+int main(){
+  int totalDiscs;
+  RepeatPrompt repeat;
+
+  do{
+    {using namespace TowersMMoore;
+      
+      cout << "Enter number of disks:\n";
+      cin >> totalDiscs;
+      
+      TowersOfHanoi towers(totalDiscs); //constructor
+      cout << "All discs begin on tower A.\nThe destination is tower B.\nThe spare tower is C.\n\n";
+      
+      towers.moveDisc(towers.getMaxIndex(), 'A', 'B', 'C');
+      cout << "Number of moves: " << towers.getMoves() << endl << endl;
+      
+    } //end namespace TowersMMoore
+  }while (repeat.repeatYN());
   
-  //overloaded constructor:
-  TowersOfHanoi::TowersOfHanoi(int totalDiscs){
-    discs = new char[totalDiscs];
-    maxIndex = totalDiscs - 1;
-    moves = 0;
-    
-    for(int i = 0; i <= maxIndex; i++){
-      discs[i] = 'A';
-    }
-  }
-
-  //Based on research
-  //Source: http://www.cs.cmu.edu/~cburch/survey/recurse/hanoiimpl.html
-  void TowersOfHanoi::moveDisc(int disc, char source, char dest, char spare){
-    if (disc == 0){
-       discs[disc] = dest;
-       display(disc);
-       moves++;
-  	}
-    else{
-      moveDisc(disc - 1, source, spare, dest);
-      discs[disc] = dest;
-      display(disc);
-      moves++;
-      moveDisc(disc - 1, spare, dest, source);
-    }
-  } //end moveDiscs
-
-  //uses cout:
-  void TowersOfHanoi::display(int index){
-    cout << "Disc " << (index + 1) << " moved to tower " << discs[index] << endl;
-  } //end display
-  
-  TowersOfHanoi::~TowersOfHanoi()
-  {delete [] discs;}
-} //end namespace TowersMMoore
+  system("pause");
+  return 0;
+} //end main
