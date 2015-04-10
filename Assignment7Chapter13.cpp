@@ -26,7 +26,7 @@ int main(){
       TowersOfHanoi towers(totalDiscs); //constructor
       cout << "All discs begin on tower A.\n";
       
-      towers.moveDiscs();
+      towers.moveDisc(getMaxIndex(), 'A', 'B', 'C');
       cout << "Number of moves: " << towers.getMoves() << endl << endl;
       //TESTING!!!!!!!!!!!!
         cout << "Error Testing:\n";
