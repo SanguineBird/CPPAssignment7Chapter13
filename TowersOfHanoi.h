@@ -18,13 +18,11 @@ namespace TowersMMoore{
       char* getDiscs(){return discs;}
       char getDiscsIndex(int index){return discs[index];}
       //recurrent function moves 1 disc:
-      void moveDiscs();
+      void moveDisc(int disc, char source, char dest, char spare);
       ~TowersOfHanoi();
     private:
       //prints latest movement of disc to screen using cout:
       void display(int index);
-      //returns true if all discs are on specified tower:
-      bool allDiscs(char tower);
       
       int moves;
       int maxIndex;
