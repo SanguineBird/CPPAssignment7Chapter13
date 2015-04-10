@@ -5,6 +5,10 @@ This is the header file for class RepeatPrompt.cpp
 #ifndef REPEATPROMPT_H
 #define REPEATPROMPT_H
 
+
+#include <iostream> //cout, cin
+using namespace std;
+
 namespace RepeatMMoore{
   class RepeatPrompt{
     public:
