@@ -11,29 +11,32 @@ Purpose: Implement the Towers of Hanoi using recursion.
 using namespace std;
 #include "TowersOfHanoi.h"
 #include "RepeatPrompt.h"
+using namespace RepeatMMoore;
 
 int main(){
   int totalDiscs;
+  RepeatPrompt repeat;
 
   do{
-    namespace TowersMMoore{
+    {using namespace TowersMMoore;
+      
       cout << "Enter number of disks:\n";
       cin >> totalDiscs;
       
-      TowersOfHanoi(totalDiscs); //constructor
+      TowersOfHanoi towers(totalDiscs); //constructor
       cout << "All discs begin on tower A.\n";
       
-      moveDiscs();
-      cout << "Number of moves: " << getMoves(); << endl << endl;
+      towers.moveDiscs();
+      cout << "Number of moves: " << towers.getMoves() << endl << endl;
       //TESTING!!!!!!!!!!!!
-        cout << "Error Testing:";
-        for(int i = 0; i <= maxIndex; i++){
-          cout << "disc: " << i + 1 << " tower: " << discs[i] << endl;
+        cout << "Error Testing:\n";
+        for(int i = 0; i <= towers.getMaxIndex(); i++){
+          cout << "disc: " << i + 1 << " tower: " << towers.getDiscsIndex(i) << endl;
         }
         cout << endl << endl;
       //TESTING!!!!!!!!!!!!!!
     } //end namespace TowersMMoore
-  }while (RepeatMMoore::repeatYN());
+  }while (repeat.repeatYN());
   
   system("pause");
   return 0;
